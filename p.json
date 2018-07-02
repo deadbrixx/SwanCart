@@ -1,0 +1,15 @@
+{
+    "/userapi/*":{
+        "target":"http://localhost:5000"
+    },
+    "/newapi/*":{
+        "target":"http://localhost:5000"
+    },
+    "/regapi/*":{
+        "target":"http://localhost:5000"
+    }
+    ,
+    "/loginapi/*":{
+        "target":"http://localhost:5000"
+    }
+}

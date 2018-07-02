@@ -1,0 +1,174 @@
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color:#6C27B3">
+  <a class="navbar-brand" href="#" style="color:white;font-weight: bold">SWAN | Cart</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item dropdown dropdowns" *ngFor="let m of allmenudata">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: aquamarine">
+          {{m.cname}}
+        </a>
+         <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+           <li class="dropdown-submenu" *ngFor="let n of submenudata">
+             <a  class="dropdown-item" tabindex="-1" href="" *ngIf="m._id == n.catid">{{n.sname}}</a>
+           
+             <ul class="dropdown-menu">
+                <li class="dropdown-submenu" *ngFor="let o of subsubmenudata">
+                  <a class="dropdown-item" href="" *ngIf="n._id == o.subid">{{o.ssname}}</a>
+
+                  <ul class="dropdown-menu">
+                      <li class="dropdown-submenu" *ngFor="let p of brandmenudata">
+                        <a class="dropdown-item" href="" *ngIf="o._id == p.subsubid">{{p.bname}}</a>
+               
+                  <ul class="dropdown-menu">
+                      <li class="dropdown-item" *ngFor="let p of proddata">
+                        <a href="" *ngIf="z._brid == p._id">{{p.pname}}</a>
+                      </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="Search for Brands, prodcuts and more..." name="srch-term" id="srch-term" style="width:350px;">
+            <div class="input-group-btn">
+                <button class="btn btn-light" type="submit" style="background-color:#6C27B3;border-color:#6C27B3;margin-right: 5rem"><i class="fa fa-search" style="color:mediumspringgreen; font-size:20px;"></i></button>
+            </div>
+        </div>
+        <div id="openreglog" data-toggle="modal" data-target="#exampleModal">
+          <i class="fa fa-user-circle-o" style="color:mediumspringgreen; font-size:20px;"></i>
+          <i class="fa fa-sort-desc" style="color:mediumspringgreen;margin-left: 6px;"></i>
+        </div>
+      </form>
+  </div>
+</nav>
+
+
+<!-- Modal Login-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true" style="width:210px;text-align:center">Login</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false" style="width:210px;text-align: center;">Register</a>
+              </li>
+          </ul>
+
+        <button id="btnshow" type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+            <div class="tab-content" id="pills-tabContent">
+              <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                  
+                <form>
+                    <div class="form-group row" style="margin-top: 2rem">
+                        <div class="col-sm-12">
+                          <input  name="useremail" [(ngModel)]="var_log_email" type="email" class="form-control" placeholder="Email">
+                        </div>
+                      </div>
+
+                          <div class="form-group row">
+                            <div class="col-sm-12">
+                              <input name="userpassword" [(ngModel)]="var_log_password" type="password" class="form-control" placeholder="Password">
+                            </div>
+                          </div>
+
+                                <div class="form-group row">
+                                  <div class="col-sm-10">
+                                    <a href="#" style="float:right;margin-right:-60px;">Forgot password ?</a>
+                                  </div>
+                                </div>
+                </form>
+                <button  id="btnhide" type="button" (click)="userlogin()" class="btn btn-light" style="background-color:#6C27B3; color:whitesmoke;">Login</button>
+                <button id="bbtnshow" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+
+                    <div class="modal-body">
+                     <form>
+              
+                    <div class="row">
+                      <div class="col-xs-12 col-sm-6 col-md-6">
+                        <div class="form-group">
+                        <input [(ngModel)]="var_reg_firstname" type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                        </div>
+                      </div>
+              
+                    <div class="col-xs-12 col-sm-6 col-md-6">
+                      <div class="form-group">
+                        <input [(ngModel)]="var_reg_lastname" type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                      </div>
+                    </div>
+                    </div>
+            
+                        <div class="form-group">
+                          <input [(ngModel)]="var_reg_email" type="text" name="display_name" id="display_name" class="form-control input-lg" placeholder="Email Address" tabindex="3">
+                        </div>
+                    
+                        <div class="form-group">
+                          <input [(ngModel)]="var_reg_mobile" type="email" name="email" id="email" class="form-control input-lg" placeholder="Mobile No" tabindex="4">
+                        </div>
+                    
+                        <div class="form-group">
+                          <textarea [(ngModel)]="var_reg_billaddress" name="address" id="address" class="form-control input-lg" placeholder="Address" tabindex="4"></textarea>
+                        </div>
+                    
+                        <div class="form-group">
+                          <textarea [(ngModel)]="var_reg_ship_address" name="shipaddress" id="shipaddress" class="form-control input-lg" placeholder="Shipping Address" tabindex="5"></textarea>
+                        </div>
+              
+                          <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                              <div class="form-group">
+                                <input [(ngModel)]="var_reg_password" type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
+                              </div>
+                            </div>
+              
+                                  <div class="col-xs-12 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                      <input [(ngModel)]="var_reg_confpassword" type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+                                    </div>
+                                  </div>
+                                </div>
+                          </form>
+
+                          <button type="button" (click)="registration()" class="btn btn-light" style="background-color:#6C27B3; color: white;">Register</button>
+                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              
+                     
+                    </div>
+                      
+
+                </div>
+            </div>
+      </div>
+
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<app-swanupcomingproduct></app-swanupcomingproduct>
+
+<app-swannewproduct></app-swannewproduct>
+
+<app-swanfooter></app-swanfooter>
