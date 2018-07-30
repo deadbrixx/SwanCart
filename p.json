@@ -11,5 +11,8 @@
     ,
     "/loginapi/*":{
         "target":"http://localhost:5000"
+    },
+    "/regularapi/*":{
+        "target":"http://localhost:5000"
     }
 }

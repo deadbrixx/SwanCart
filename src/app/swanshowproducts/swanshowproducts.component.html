@@ -1,3 +1,29 @@
-<p>
-  swanshowproducts works!
-</p>
+<div class="container-fluid">
+  <div class="row">
+    <div class="card" style="width: 11rem;" *ngFor="let r of brandiddata">
+      <img class="card-img-top" src="../../assets/uploads/{{r.pimg}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{r.pname}}</h5>
+        <p class="card-text">{{r.pprice}}</p>
+      </div>
+    </div>
+ </div>
+</div>
+
+
+<!--For Big Image To Cart-->
+
+<div class="container-fluid">
+<div class="row" *ngFor="let p of newprodiddata">
+  <div class="col-md-6">
+      <img class="card-img-top" src="../../assets/uploads/{{p.pimg}}" alt="Card image cap">
+  </div>
+  <div class="col-md-6">
+      <h5 class="card-title">{{p.pname}}</h5>
+      <p class="card-text">{{p.pcolor}}</p>
+      <p class="card-text">{{p.pprice}}</p>
+      <p class="card-text">{{p.pquantity}}</p>
+      <button type="button" class="btn btn-light btn-lg" style="font-size:30px;;width:8rem;background-color: gold;color:ghostwhite">Add To Cart</button>
+  </div>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import * as $ from 'jquery';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -26,37 +27,47 @@ export class AppComponent implements OnInit {
   var_reg_billaddress;
   var_reg_ship_address;
 
+  // -----------------------------------validation varables
+  namemsg;
+  lnamemsg;
+  emailmsg;
+  mobmsg;
+  billaddmsg;
+  shipaddmsg;
+  passmsg;
 
-  constructor (public userhttp: Http) {
+
+  constructor (public userhttp: Http, public rout: Router) {
     this.getallmenus();
   }
 
     // ---------------------------------------------------------------------
     getallmenus() {
       this.userhttp.get('userapi/getallmenu').subscribe(ga => {
-        this.allmenudata = JSON.parse(ga._body);
+        this.allmenudata = JSON.parse(ga['_body']);
       });
           this.userhttp.get('userapi/getallsubmenu').subscribe(su => {
-            this.submenudata = JSON.parse(su._body);
+            this.submenudata = JSON.parse(su['_body']);
           });
               this.userhttp.get('userapi/getallsubsubmenu').subscribe(ssu => {
-                this.subsubmenudata = JSON.parse(ssu._body);
+                this.subsubmenudata = JSON.parse(ssu['_body']);
               });
                   this.userhttp.get('userapi/getallbrandmenu').subscribe(bu => {
-                    this.brandmenudata = JSON.parse(bu._body);
+                    this.brandmenudata = JSON.parse(bu['_body']);
                   });
     }
 
     userlogin() {
       const logobj = {uemail: this.var_log_email, upwd: this.var_log_password};
         this.userhttp.post('logapi/userlogin', logobj).subscribe(lo => {
-          this.logdata = JSON.parse(lo._body);
+          this.logdata = JSON.parse(lo['_body']);
       });
     }
 
      // ----------------------------------------------------------------------------------------------
   // FOr Registration
-    registration() {
+    registration(validation_param) {
+      if (validation_param.valid) {
       const regobj = {
                     userdata: {
                     fname: this.var_reg_firstname,
@@ -80,11 +91,23 @@ export class AppComponent implements OnInit {
 
 
             };
-    this.userhttp.post('regapi/userregister', regobj).subscribe(this.lcb);
+    this.userhttp.post('regapi/userregister', regobj).subscribe(lcb => {
+       alert('Register success');
+    });
+      }  else {
+       this.namemsg = 'First Name is required';
+       this.lnamemsg = 'Last Name is required';
+       this.emailmsg = 'Email is required';
+       this.mobmsg = 'Mobile No is required';
+       this.billaddmsg = 'Billing Address is required';
+       this.shipaddmsg = 'Shipping Address is required';
+       this.passmsg = 'Password is required';
      }
-     lcb = (l) => {
-       alert('Register succes');
   }
+// -----------------------------------------------
+getbrandnav(brands) {
+  this.rout.navigateByUrl('/regularprod;brandid=' + brands._id);
+}
 
 
   ngOnInit() {

@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongo = require('mongojs');
-var dbconnection = mongo("mongodb://localhost:27017/nalaxecomapp");
+var dbconnection = mongo("mongodb://ashish:ashish1@ds147190.mlab.com:47190/nalaxcliecom");
 
 router.get("/getallmenu", function(req, res){
     dbconnection.category.find(function(error, result){

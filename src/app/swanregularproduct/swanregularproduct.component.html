@@ -1,3 +1,13 @@
 <p>
   swanregularproduct works!
 </p>
+
+<div class="col-sm-9">
+    <div class="card" style="width: 11rem;" *ngFor="let show of alldiddata">
+        <img class="card-img-top" src="../../assets/uploads/{{show.pimg}}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">{{show.pname}}</h5>
+          <p class="card-text">{{show.pprice}}</p>
+        </div>
+      </div>
+</div>

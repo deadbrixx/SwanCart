@@ -12,11 +12,15 @@ import { SwanregularproductComponent } from './swanregularproduct/swanregularpro
 import { SwanupcomingproductComponent } from './swanupcomingproduct/swanupcomingproduct.component';
 import { SwanshowproductsComponent } from './swanshowproducts/swanshowproducts.component';
 import { BlankrouteComponent } from './blankroute/blankroute.component';
+import { SwanproductdetailsComponent } from './swanproductdetails/swanproductdetails.component';
 
-const userroute = [{path: '', component: BlankrouteComponent},
-                    {},
-                     {},
-                      {}];
+const myprodroute = [{path: '', component: BlankrouteComponent},
+                     {path: 'showproducts', component: SwanshowproductsComponent},
+                      {path: 'regularprod', component: SwanregularproductComponent},
+                       {path: 'upcomingprod', component: SwanupcomingproductComponent},
+                        {path: 'showproddetails', component: SwanproductdetailsComponent},
+                         {path: 'newprod', component: SwannewproductComponent}];
+const routeobj = RouterModule.forRoot(myprodroute);
 
 
 @NgModule({
@@ -27,13 +31,16 @@ const userroute = [{path: '', component: BlankrouteComponent},
     SwannewproductComponent,
     SwanregularproductComponent,
     SwanupcomingproductComponent,
-    SwanshowproductsComponent
+    SwanshowproductsComponent,
+    BlankrouteComponent,
+    SwanproductdetailsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule
+    RouterModule,
+    routeobj
   ],
   providers: [],
   bootstrap: [AppComponent]

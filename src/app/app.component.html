@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#6C27B3">
-  <a class="navbar-brand" href="#" style="color:white;font-weight: bold">SWAN | Cart</a>
+  <a class="navbar-brand" href="#" style="color:white;font-weight: bold">|||NexT</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -20,7 +20,7 @@
 
                   <ul class="dropdown-menu">
                       <li class="dropdown-submenu" *ngFor="let p of brandmenudata">
-                        <a class="dropdown-item" href="" *ngIf="o._id == p.subsubid">{{p.bname}}</a>
+                        <a class="dropdown-item" href="" *ngIf="o._id == p.subsubid" (click)="getbrandnav(p)">{{p.bname}}</a>
                
                   <ul class="dropdown-menu">
                       <li class="dropdown-item" *ngFor="let p of proddata">
@@ -100,57 +100,65 @@
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
 
                     <div class="modal-body">
-                     <form>
+                     <form name="regval" #registerform="ngForm">
               
                     <div class="row">
                       <div class="col-xs-12 col-sm-6 col-md-6">
                         <div class="form-group">
-                        <input [(ngModel)]="var_reg_firstname" type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                        <input [(ngModel)]="var_reg_firstname" type="text" name="first_name" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1" #nm="ngModel" required>
+                        <span *ngIf="nm.errors && nm.errors.required">{{namemsg}}</span>
                         </div>
                       </div>
               
                     <div class="col-xs-12 col-sm-6 col-md-6">
                       <div class="form-group">
-                        <input [(ngModel)]="var_reg_lastname" type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                        <input [(ngModel)]="var_reg_lastname" type="text" name="last_name" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2" #ln="ngModel" required>
+                        <span *ngIf="ln.errors && ln.errors.required">{{lnamemsg}}</span>
                       </div>
                     </div>
                     </div>
             
                         <div class="form-group">
-                          <input [(ngModel)]="var_reg_email" type="text" name="display_name" id="display_name" class="form-control input-lg" placeholder="Email Address" tabindex="3">
+                          <input [(ngModel)]="var_reg_email" type="text" name="display_name" id="display_name" class="form-control input-lg" placeholder="Email Address" tabindex="3" #em="ngModel" required>
+                          <span *ngIf="em.errors && em.errors.required">{{emailmsg}}</span>
                         </div>
                     
                         <div class="form-group">
-                          <input [(ngModel)]="var_reg_mobile" type="email" name="email" id="email" class="form-control input-lg" placeholder="Mobile No" tabindex="4">
+                          <input [(ngModel)]="var_reg_mobile" type="email" name="email" id="email" class="form-control input-lg" placeholder="Mobile No" tabindex="4" #mob="ngModel" required>
+                          <span *ngIf="mob.errors && mob.errors.required">{{mobmsg}}</span>
                         </div>
                     
                         <div class="form-group">
-                          <textarea [(ngModel)]="var_reg_billaddress" name="address" id="address" class="form-control input-lg" placeholder="Address" tabindex="4"></textarea>
+                          <textarea [(ngModel)]="var_reg_billaddress" name="address" id="address" class="form-control input-lg" placeholder="Address" tabindex="4" #ad="ngModel" required></textarea>
+                          <span *ngIf="ad.errors && ad.errors.required">{{billaddmsg}}</span>
                         </div>
                     
                         <div class="form-group">
-                          <textarea [(ngModel)]="var_reg_ship_address" name="shipaddress" id="shipaddress" class="form-control input-lg" placeholder="Shipping Address" tabindex="5"></textarea>
+                          <textarea [(ngModel)]="var_reg_ship_address" name="shipaddress" id="shipaddress" class="form-control input-lg" placeholder="Shipping Address" tabindex="5" #sa="ngModel" required></textarea>
+                          <span *ngIf="sa.errors && sa.errors.required">{{shipaddmsg}}</span>
                         </div>
               
                           <div class="row">
                             <div class="col-xs-12 col-sm-6 col-md-6">
                               <div class="form-group">
-                                <input [(ngModel)]="var_reg_password" type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
+                                <input [(ngModel)]="var_reg_password" type="password" name="password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5" #pd="ngModel" required>
+                                <span *ngIf="pd.errors && pd.errors.required">{{passmsg}}</span>
                               </div>
                             </div>
               
                                   <div class="col-xs-12 col-sm-6 col-md-6">
                                     <div class="form-group">
-                                      <input [(ngModel)]="var_reg_confpassword" type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+                                      <input [(ngModel)]="var_reg_confpassword" type="password" name="password_confirmation" id="password_confirmation" class="form-control input-lg"  #pdc="ngModel" placeholder="Confirm Password" tabindex="6" required>
                                     </div>
                                   </div>
                                 </div>
-                          </form>
+                          
 
-                          <button type="button" (click)="registration()" class="btn btn-light" style="background-color:#6C27B3; color: white;">Register</button>
+                          <button type="button" (click)="registration(registerform)" class="btn btn-light" style="background-color:#6C27B3; color: white;">Register</button>
                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               
-                     
+                     </form>
+
                     </div>
                       
 
@@ -167,8 +175,8 @@
 
 
 
-<app-swanupcomingproduct></app-swanupcomingproduct>
+<!--<app-swanupcomingproduct></app-swanupcomingproduct>-->
 
-<app-swannewproduct></app-swannewproduct>
+<router-outlet></router-outlet>
 
 <app-swanfooter></app-swanfooter>

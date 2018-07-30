@@ -1,0 +1,9 @@
+.card{
+    overflow: hidden;
+    text-align: center;
+    transition: 0.75s;
+}
+.card:hover{
+    transform:scale(0.9);
+    opacity:0.8;    
+}

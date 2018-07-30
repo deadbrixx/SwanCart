@@ -18,6 +18,9 @@ userapp.use("/logapi", loginfile);
 var newprodfile = require('./server_modules/newproduct');
 userapp.use("/newapi", newprodfile);
 
+var regularprodfile = require('./server_modules/regularproduct');
+userapp.use("/regularapi", regularprodfile);
+
 
 
 userapp.listen(5000);

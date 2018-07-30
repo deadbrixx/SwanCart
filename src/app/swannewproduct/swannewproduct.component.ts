@@ -16,13 +16,13 @@ export class SwannewproductComponent implements OnInit {
 
    allnewprod() {
     this.userhttp.get('newapi/newprod').subscribe(np => {
-      this.allnewdata = JSON.parse(np._body);
-      alert(this.allnewdata);
+     this.allnewdata = JSON.parse(np['_body']);
+      // alert(np);
     });
    }
 
-   getnewprodimages() {
-    this.rout.navigateByUrl('/');
+   getnewprodimages(newid) {
+    this.rout.navigateByUrl('/showproddetails;newprodid=' + newid._id);
    }
 
   ngOnInit() {
